@@ -1,0 +1,8 @@
+out/
+cache/
+broadcast/
+.vscode/
+
+# Deploy keys and RPC URLs can live in a .env file: never commit one.
+.env
+.env.*

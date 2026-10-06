@@ -1,0 +1,58 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+test = "test"
+script = "script"
+# With dynamic test linking, forge 1.8.1 and 1.8.5 hit an internal compiler
+# error on the nested protocol dependency. This changes only how tests are
+# built, not the contracts.
+dynamic_test_linking = false
+
+# Pin the compiler: a floating version is a reproducibility and audit hazard.
+solc_version = "0.8.36"
+# Target Cancun, which Base and Base Sepolia support. The market's reentrancy
+# guard uses transient storage, which Cancun introduced.
+evm_version = "cancun"
+# The optimizer settings are part of the deployed bytecode, and so of every
+# CREATE2 address: changing them moves the contracts.
+optimizer = true
+optimizer_runs = 10_000
+via_ir = true
+# Reproducible bytecode: no IPFS metadata hash appended.
+bytecode_hash = "none"
+# Compiler and lint warnings are errors.
+deny = "warnings"
+
+# The deployments test reads this repository's addresses and the protocol's.
+fs_permissions = [
+    { access = "read", path = "./deployments.json" },
+    { access = "read", path = "./lib/protocol/deployments.json" },
+]
+
+remappings = [
+    "@openzeppelin/contracts/=lib/protocol/lib/openzeppelin-contracts/contracts/",
+    "forge-std/=lib/protocol/lib/forge-std/src/",
+    "protocol/=lib/protocol/",
+]
+
+[profile.default.fuzz]
+runs = 1024
+
+[profile.default.invariant]
+runs = 256
+depth = 32
+fail_on_revert = true
+
+[lint]
+# Lint the contracts, not the tests and scripts: test code ignores return
+# values, loops over calls, and pranks by design.
+ignore = ["test/**/*.sol", "script/**/*.sol"]
+
+[fmt]
+line_length = 100
+# Wrap comments longer than the line, keeping `///` (NatSpec) intact.
+wrap_comments = true
+tab_width = 4
+bracket_spacing = false
+int_types = "long"

@@ -1,0 +1,32 @@
+{
+  "base": {
+    "chainId": 8453,
+    "AccountKeys": {
+      "address": "0x6E6674Cd2Df37812C5c729a68CA881FFC22A49E4",
+      "devFund": "0xa179413c4EaC732668c368258a7Ef1D6195c2dE5",
+      "startBlock": 52256362
+    },
+    "AuthorKeyGate": {
+      "address": "0x62653E324dE74404493eDcB3E1375f572B6e8292"
+    },
+    "AuthorKeyBlocklistGate": {
+      "address": "0x48AeE1fee1b227eE1E34A58ac313E95e623C7e2C",
+      "list": "blocked"
+    }
+  },
+  "baseSepolia": {
+    "chainId": 84532,
+    "AccountKeys": {
+      "address": "0x6E6674Cd2Df37812C5c729a68CA881FFC22A49E4",
+      "devFund": "0xa179413c4EaC732668c368258a7Ef1D6195c2dE5",
+      "startBlock": 47375389
+    },
+    "AuthorKeyGate": {
+      "address": "0x62653E324dE74404493eDcB3E1375f572B6e8292"
+    },
+    "AuthorKeyBlocklistGate": {
+      "address": "0x48AeE1fee1b227eE1E34A58ac313E95e623C7e2C",
+      "list": "blocked"
+    }
+  }
+}
